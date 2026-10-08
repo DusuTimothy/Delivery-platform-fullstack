@@ -102,6 +102,7 @@ cp .env.example .env
 ```env
 PORT=
 NODE_ENV=
+CORS_ORIGINS=
 
 DB_HOST=
 DB_PORT=
@@ -121,6 +122,10 @@ For an Aiven PostgreSQL connection, save Aiven's CA certificate as
 `backend/certs/ca.pem`, then set `DB_SSL_CA_PATH=certs/ca.pem` in
 `backend/.env`. The backend will require TLS and verify the server certificate
 using that CA.
+
+Set `CORS_ORIGINS` to the frontend's exact origin (scheme and host, with no
+path). Separate multiple allowed origins with commas. For local development,
+use `http://localhost:5173`; in production, use your deployed frontend URL.
 
 5. Create the PostgreSQL database:
 
