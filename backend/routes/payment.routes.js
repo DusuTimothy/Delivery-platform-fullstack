@@ -7,6 +7,6 @@ router.use(protect);
 
 router.post('/deliveries/:deliveryId/payments', restrictTo('CUSTOMER'), paymentController.createOrUpdatePayment);
 router.get('/payments/:id', paymentController.getPayment);
-router.get('/my-payments', restrictTo('CUSTOMER'), paymentController.getMyPayments);
+router.get('/mypayments', restrictTo('CUSTOMER'), paymentController.getMyPayments);
 
 module.exports = router;
