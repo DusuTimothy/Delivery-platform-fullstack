@@ -100,20 +100,27 @@ cp .env.example .env
 4. Update the database and JWT settings in `.env`:
 
 ```env
-PORT=5000
-NODE_ENV=development
+PORT=
+NODE_ENV=
 
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=your_db_password
-DB_NAME=delivery_platform_dev
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+# For Aiven, set to certs/ca.pem after adding the downloaded CA certificate.
+DB_SSL_CA_PATH=
 
-JWT_SECRET=your_super_secret_key
-JWT_EXPIRES_IN=24h
+JWT_SECRET=
+JWT_EXPIRES_IN=
 
-BCRYPT_ROUNDS=10
+BCRYPT_ROUNDS=
 ```
+
+For an Aiven PostgreSQL connection, save Aiven's CA certificate as
+`backend/certs/ca.pem`, then set `DB_SSL_CA_PATH=certs/ca.pem` in
+`backend/.env`. The backend will require TLS and verify the server certificate
+using that CA.
 
 5. Create the PostgreSQL database:
 
