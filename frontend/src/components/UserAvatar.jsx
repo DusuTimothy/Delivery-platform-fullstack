@@ -29,7 +29,7 @@ export default function UserAvatar({ user, seed, size = 32, className = '' }) {
   return (
     <img
       className={`user-photo ${className}`}
-      src={userPhoto(stableSeed)}
+      src={userPhoto(stableSeed)} 
       width={size}
       height={size}
       alt={user ? `${user.firstName} ${user.lastName}` : 'User photo'}
