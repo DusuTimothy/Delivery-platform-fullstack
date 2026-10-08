@@ -16,7 +16,7 @@ export default function AdminRiders() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/admin/riders')
+      const { data } = await api.get('api/admin/riders')
       setRiders(data.data || [])
     } catch {
       setError('We could not load riders.')
@@ -29,7 +29,7 @@ export default function AdminRiders() {
 
   const changeAvailability = async (id, availability) => {
     try {
-      await api.put(`/admin/riders/${id}/availability`, { availability })
+      await api.put(`api/admin/riders/${id}/availability`, { availability })
       toast.success(`Rider set to ${availability}`)
       load()
     } catch (err) {

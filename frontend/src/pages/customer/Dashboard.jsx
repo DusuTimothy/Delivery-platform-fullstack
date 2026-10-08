@@ -20,7 +20,7 @@ export default function CustomerDashboard() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/customers/deliveries')
+      const { data } = await api.get('api/customers/deliveries')
       const list = data.data || []
       setStats({
         total: list.length,

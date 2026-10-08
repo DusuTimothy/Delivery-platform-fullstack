@@ -25,7 +25,7 @@ export default function DeliveryDetail() {
 
   const load = async () => {
     try {
-      const { data } = await api.get(`/customers/deliveries/${id}`)
+      const { data } = await api.get(`api/customers/deliveries/${id}`)
       setDelivery(data.data)
     } catch (err) {
       toast.error(err.response?.data?.message || 'Delivery not found')
@@ -41,7 +41,7 @@ export default function DeliveryDetail() {
     e.preventDefault()
     setPaying(true)
     try {
-      await api.post(`/deliveries/${id}/payments`, paymentForm)
+      await api.post(`api/deliveries/${id}/payments`, paymentForm)
       toast.success('Payment recorded!')
       load() // reload so the new payment shows up
     } catch (err) {
@@ -54,7 +54,7 @@ export default function DeliveryDetail() {
   const handleCancel = async () => {
     setConfirmCancel(false)
     try {
-      await api.put(`/customers/deliveries/${id}/cancel`)
+      await api.put(`api/customers/deliveries/${id}/cancel`)
       toast.success('Delivery cancelled')
       load()
     } catch (err) {

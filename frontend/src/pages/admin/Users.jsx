@@ -18,7 +18,7 @@ export default function AdminUsers() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/admin/users')
+      const { data } = await api.get('api/admin/users')
       setUsers(data.data || [])
     } catch {
       setError('We could not load users.')
@@ -31,7 +31,7 @@ export default function AdminUsers() {
 
   const changeStatus = async (id, accountStatus) => {
     try {
-      await api.put(`/admin/users/${id}/status`, { accountStatus })
+      await api.put(`api/admin/users/${id}/status`, { accountStatus })
       toast.success(`User is now ${accountStatus}`)
       load()
     } catch (err) {

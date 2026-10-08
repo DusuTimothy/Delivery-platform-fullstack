@@ -40,7 +40,7 @@ export default function CreateDelivery() {
       const payload = { ...form }
       payload.price = Number(form.price)
       payload.distanceKm = form.distanceKm ? Number(form.distanceKm) : null
-      await api.post('/customers/deliveries', payload)
+      await api.post('api/customers/deliveries', payload)
       toast.success('Delivery request created!')
       navigate('/customer/deliveries')
     } catch (err) {

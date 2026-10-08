@@ -19,8 +19,8 @@ export default function AdminDeliveries() {
     setError(null)
     try {
       const [d, r] = await Promise.all([
-        api.get('/admin/deliveries'),
-        api.get('/admin/riders'),
+        api.get('api/admin/deliveries'),
+        api.get('api/admin/riders'),
       ])
       setDeliveries(d.data.data || [])
       setRiders(r.data.data || [])
@@ -36,7 +36,7 @@ export default function AdminDeliveries() {
   const assign = async (deliveryId, riderId) => {
     if (!riderId) return
     try {
-      await api.put(`/admin/deliveries/${deliveryId}/assign`, { riderId: Number(riderId) })
+      await api.put(`api/admin/deliveries/${deliveryId}/assign`, { riderId: Number(riderId) })
       toast.success('Rider assigned!')
       load()
     } catch (err) {

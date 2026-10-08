@@ -47,7 +47,7 @@ export default function Register() {
         delete payload.vehicleType
         delete payload.licenseNumber
       }
-      const { data } = await api.post('/auth/register', payload)
+      const { data } = await api.post('api/auth/register', payload)
       login(data.user, data.token)
       toast.success('Account created!')
       navigate(form.role === 'RIDER' ? '/rider' : '/customer', { replace: true })

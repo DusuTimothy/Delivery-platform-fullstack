@@ -25,7 +25,7 @@ export default function Profile() {
     e.preventDefault()
     setLoading(true)
     try {
-      const { data } = await api.put('/users/me', form)
+      const { data } = await api.put('api/users/me', form)
       // refresh saved user so navbar shows new names
       login({ ...user, ...form }, token)
       toast.success(data.message || 'Profile updated')
@@ -44,7 +44,7 @@ export default function Profile() {
     }
     setLoading(true)
     try {
-      const { data } = await api.put('/users/me/password', passwords)
+      const { data } = await api.put('api/users/me/password', passwords)
       toast.success(data.message || 'Password updated')
       setPasswords({ oldPassword: '', newPassword: '' })
     } catch (err) {

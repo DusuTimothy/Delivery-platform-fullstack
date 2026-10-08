@@ -28,7 +28,7 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
     try {
-      const { data } = await api.post('/auth/login', form)
+      const { data } = await api.post('api/auth/login', form)
       login(data.user, data.token)
       toast.success('Welcome back!')
       // Go back to the page they tried to open, or their dashboard

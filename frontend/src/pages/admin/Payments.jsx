@@ -19,7 +19,7 @@ export default function AdminPayments() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/admin/payments')
+      const { data } = await api.get('api/admin/payments')
       setPayments(data.data || [])
     } catch {
       setError('We could not load payments.')
@@ -33,7 +33,7 @@ export default function AdminPayments() {
   const refund = async (payment) => {
     setRefundTarget(null)
     try {
-      await api.post(`/deliveries/${payment.deliveryId}/payments`, {
+      await api.post(`api/deliveries/${payment.deliveryId}/payments`, {
         paymentMethod: payment.paymentMethod,
         paymentStatus: 'REFUNDED',
       })

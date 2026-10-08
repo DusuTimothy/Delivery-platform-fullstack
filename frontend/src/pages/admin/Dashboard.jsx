@@ -16,7 +16,7 @@ export default function AdminDashboard() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/admin/dashboard')
+      const { data } = await api.get('api/admin/dashboard')
       setStats(data.data)
     } catch {
       setError('We could not load the platform overview.')
