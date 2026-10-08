@@ -1,0 +1,250 @@
+/* ==========================================================================
+   BASE + LAYOUT UTILITIES
+   Reset, global typography, and the small set of layout helpers
+   (container / grid / cluster) used across every page.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--text);
+  background-color: var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--weight-semibold);
+  line-height: 1.25;
+  color: var(--text);
+  overflow-wrap: break-word;
+}
+
+h1 { font-size: var(--text-2xl); letter-spacing: -0.02em; }
+h2 { font-size: var(--text-xl); letter-spacing: -0.01em; }
+h3 { font-size: var(--text-lg); }
+h4 { font-size: var(--text-base); }
+
+p { overflow-wrap: break-word; }
+
+a {
+  color: var(--primary-text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover { text-decoration: underline; }
+
+/* One focus style for the whole app: a visible ring on keyboard focus only */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Users who ask for less motion get no motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- App shell ---------- */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  padding-block: var(--space-8);
+  padding-inline: var(--space-6);
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+/* ---------- Container: one max width for the whole app ---------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+/* Narrower container for form-heavy pages */
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+}
+
+/* ---------- Page header: title on the left, actions on the right ---------- */
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+
+.page-title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.page-sub {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.page-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* ---------- Grid helpers (replaces Bootstrap's row/col system) ---------- */
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* 2/3 split used by detail pages (main content + side panel) */
+.grid-sidebar {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+/* Cards fill their grid cell height (used by job cards etc.) */
+.grid > .stretch {
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-sidebar { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 { grid-template-columns: minmax(0, 1fr); }
+
+  .app-main {
+    padding-block: var(--space-6);
+    padding-inline: var(--space-4);
+  }
+}
+
+/* ---------- Cluster: a wrapping row of things (buttons, badges...) ---------- */
+
+.cluster {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+/* Gap variants for clusters (default is --space-3) */
+.cluster-2 { gap: var(--space-2); }
+.cluster-4 { gap: var(--space-4); }
+
+/* Push an item to the far edge of a flex row */
+.ml-auto { margin-left: auto; }
+
+/* Icon sitting next to text */
+.inline-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- Small text helpers (used sparingly) ---------- */
+
+.muted { color: var(--text-muted); }
+.secondary-text { color: var(--text-secondary); }
+.text-sm { font-size: var(--text-sm); }
+.text-xs { font-size: var(--text-xs); }
+.text-end { text-align: right; }
+.text-center { text-align: center; }
+/* Make an item span every column of its grid */
+.span-all { grid-column: 1 / -1; }
+.semibold { font-weight: var(--weight-semibold); }
+.mt-auto { margin-top: auto; }
+.mt-4 { margin-top: var(--space-4); }
+.mb-0 { margin-bottom: 0; }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.full-width { width: 100%; }
+
+/* ---------- Screen-reader-only text (for icon-only buttons) ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
