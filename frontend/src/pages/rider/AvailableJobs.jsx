@@ -17,7 +17,7 @@ export default function AvailableJobs() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/riders/available-jobs')
+      const { data } = await api.get('api/riders/available-jobs')
       setJobs(data.data || [])
     } catch {
       setError('We could not load the job list.')
@@ -30,7 +30,7 @@ export default function AvailableJobs() {
 
   const accept = async (id) => {
     try {
-      await api.put(`/riders/deliveries/${id}/accept`)
+      await api.put(`api/riders/deliveries/${id}/accept`)
       toast.success('Delivery accepted!')
       load()
     } catch (err) {

@@ -23,10 +23,10 @@ export default function RiderDashboard() {
     setError(null)
     try {
       const [prof, jobs, mine, hist] = await Promise.all([
-        api.get('/riders/profile'),
-        api.get('/riders/available-jobs'),
-        api.get('/riders/assigned-deliveries'),
-        api.get('/riders/history'),
+        api.get('api/riders/profile'),
+        api.get('api/riders/available-jobs'),
+        api.get('api/riders/assigned-deliveries'),
+        api.get('api/riders/history'),
       ])
       setProfile(prof.data.data)
       setCounts({
@@ -45,7 +45,7 @@ export default function RiderDashboard() {
 
   const setAvailability = async (availability) => {
     try {
-      await api.put('/riders/availability', { availability })
+      await api.put('api/riders/availability', { availability })
       toast.success(`Now ${availability}`)
       load()
     } catch (err) {

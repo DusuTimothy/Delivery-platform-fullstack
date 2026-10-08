@@ -16,7 +16,7 @@ export default function MyPayments() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/my-payments')
+      const { data } = await api.get('api/customers/my-payments')
       setPayments(data.data || [])
     } catch {
       setError('We could not load your payments.')

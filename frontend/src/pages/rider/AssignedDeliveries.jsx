@@ -18,7 +18,7 @@ export default function AssignedDeliveries() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/riders/assigned-deliveries')
+      const { data } = await api.get('api/riders/assigned-deliveries')
       setDeliveries(data.data || [])
     } catch {
       setError('We could not load your deliveries.')
@@ -31,7 +31,7 @@ export default function AssignedDeliveries() {
 
   const updateStatus = async (id, status) => {
     try {
-      await api.put(`/riders/deliveries/${id}/update-status`, { status })
+      await api.put(`api/riders/deliveries/${id}/update-status`, { status })
       toast.success(`Moved to ${status}`)
       load()
     } catch (err) {

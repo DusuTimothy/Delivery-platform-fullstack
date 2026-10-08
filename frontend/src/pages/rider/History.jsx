@@ -13,7 +13,7 @@ export default function RiderHistory() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/riders/history')
+      const { data } = await api.get('api/riders/history')
       setItems(data.data || [])
     } catch {
       setError('We could not load your history.')

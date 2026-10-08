@@ -16,7 +16,7 @@ export default function MyDeliveries() {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await api.get('/customers/deliveries')
+      const { data } = await api.get('api/customers/deliveries')
       setDeliveries(data.data || [])
     } catch {
       setError('We could not load your deliveries.')
